@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.moe.showtime" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Showtime</name>
-  <description>Showtime 3.0.</description>
+  <description>Unofficial iOS app for Edna Mall's showtime</description>
   <author email="moe.duffdude@gmail.com" href="http://moe-szyslak.github.io/">Moe Szyslak</author>
   <content src="index.html"/>
   <access origin="*"/>
