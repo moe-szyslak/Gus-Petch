@@ -1,7 +1,7 @@
 {
-  "name": "showtime",
+  "name": "gus_petch",
   "version": "3.0.0",
-  "description": "showtime: An Ionic CLI + React App",
+  "description": "Gus-Petch: Unofficial iOS app for Edna Mall's showtime",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
