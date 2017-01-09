@@ -3,14 +3,14 @@
 
 import React, { Component, PropTypes } from 'react';
 
-import history from '../config/history';
-import store from '../redux/store';
-import { showtime, activeMovie } from '../redux/action/showtime';
-import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableScroll, showMovie411 } from '../util/DOMActions';
+import history from 'app/config/history';
+import store from 'app/redux/store';
+import { showtime, activeMovie } from 'app/redux/action/showtime';
+import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableScroll, showMovie411 } from 'app/util/DOMActions';
 
-import Header from './Header.jsx';
-import Menu from './Menu.jsx';
-import Movie411 from './Movie411.jsx';
+import Header from 'app/components/Header.jsx';
+import Menu from 'app/components/Menu.jsx';
+import Movie411 from 'app/components/Movie411.jsx';
 
 class Showtime extends Component {
   constructor(props) {

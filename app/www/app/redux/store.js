@@ -2,7 +2,7 @@
 
 import { createStore } from 'redux';
 
-import showtime from './reducer/showtime';
+import showtime from 'app/redux/reducer/showtime';
 
 const store = createStore(
   showtime,

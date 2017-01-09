@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import geezer from 'geezer';
 
-import i18n from '../config/i18n';
-import amClass from './../util/amClass';
+import i18n from 'app/config/i18n';
+import amClass from 'app/util/amClass';
 
 function CinemaInfo({ to, language, cinemaLabel, movieCount }) {
   return (

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import i18n from '../config/i18n';
-import amClass from '../util/amClass';
-import containsFidel from '../util/containsFidel';
+import i18n from 'app/config/i18n';
+import amClass from 'app/util/amClass';
+import containsFidel from 'app/util/containsFidel';
 
 /**
  * To have proper stacking context, some components will live _outside_, not inside <Movie />
