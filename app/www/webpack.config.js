@@ -2,21 +2,26 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const PRODUCTION = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: ['./react-app/index.jsx'],
+  entry: ['./app/index.jsx'],
   output: {
-    path: path.join(__dirname),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  postcss() {
-    return [autoprefixer, precss];
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      app: 'app',
+    },
+    extensions: ['', '.js', '.jsx', '.less', '.scss'],
   },
   module: {
     loaders: [
       // js[x]
-      { test: /\.jsx?$/, include: path.join(__dirname, 'react-app'), loader: 'babel-loader' },
+      { test: /\.jsx?$/, include: path.join(__dirname, 'app'), loader: 'babel-loader' },
 
       // css
       { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -26,33 +31,24 @@ module.exports = {
 
       // less
       { test: /\.less$/, loader: 'style-loader!css-loader!postcss-loader!less-loader' },
+
+      // sass
+      { test: /\.scss$/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' },
     ],
   },
-  postcss: [ autoprefixer({ browsers: ['iOS >= 7'] }) ],
-};
-
-// depending on the arguments passes we'll be adding specific
-// plugins to webpack else we'll have production build even on webpack dev server
-if (process.argv.indexOf('-p') > -1) {
-  module.exports.devtool = '#source-map';
-  module.exports.plugins = [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'react-app/index.html'),
-      filename: 'index.html',
-      inject: 'body',
-    }),
+  postcss: [autoprefixer({ browsers: ['iOS >= 7'] }), precss],
+  devtool: PRODUCTION ? '#source-map' : null,
+  plugins: PRODUCTION ? [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-  ];
-} else {
-  module.exports.plugins = [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'react-app/index.html'),
-      filename: 'index.html',
-      inject: 'body',
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
     }),
-  ];
-}
+  ] : [],
+};
