@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import geezer from 'geezer';
 
 import i18n from '../config/i18n';
-import geez from './../util/geez';
 import amClass from './../util/amClass';
 
 function CinemaInfo({ to, language, cinemaLabel, movieCount }) {
@@ -14,7 +14,7 @@ function CinemaInfo({ to, language, cinemaLabel, movieCount }) {
 
       <div className={amClass(language)}>
         <strong>
-          { language === 'am' ? geez(movieCount) : movieCount }
+          { language === 'am' ? geezer(movieCount) : movieCount }
         </strong>
         <span>{ ` ${i18n[language][movieCount > 1 ? 'MOVIES' : 'MOVIE']}` }</span>
       </div>
