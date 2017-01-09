@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 
-import store from '../redux/store';
-import i18n from '../config/i18n';
-import { language, theme } from '../redux/action/showtime';
-import amClass from './../util/amClass';
+import store from 'app/redux/store';
+import i18n from 'app/config/i18n';
+import { language, theme } from 'app/redux/action/showtime';
+import amClass from 'app/util/amClass';
 
 class Setting extends Component {
   constructor(props) {

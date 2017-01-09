@@ -3,10 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import store from '../redux/store';
-import { poster } from '../redux/action/showtime';
-import containsFidel from '../util/containsFidel';
-import { PLACEHOLDER_POSTER, CERTIFIED_FRESH, FRESH_TOMATO, ROTTEN } from '../config/image';
+import store from 'app/redux/store';
+import { poster } from 'app/redux/action/showtime';
+import containsFidel from 'app/util/containsFidel';
+import { PLACEHOLDER_POSTER, CERTIFIED_FRESH, FRESH_TOMATO, ROTTEN } from 'app/config/image';
 
 const posterUrls = Object.create(null); // will be used to prevent _redundant_ poster action
 

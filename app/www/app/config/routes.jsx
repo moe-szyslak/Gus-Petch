@@ -2,13 +2,13 @@
 import React from 'react';
 import { Route, Router, IndexRoute } from 'react-router';
 
-import history from './history';
+import history from 'app/config/history';
 
-import Showtime from './../component/Showtime.jsx';
-import Rick from './../component/Rick.jsx';
-import Cinema from './../component/Cinema.jsx';
-import Movie from './../component/Movie.jsx';
-import Setting from './../component/Setting.jsx';
+import Showtime from 'app/components/Showtime.jsx';
+import Rick from 'app/components/Rick.jsx';
+import Cinema from 'app/components/Cinema.jsx';
+import Movie from 'app/components/Movie.jsx';
+import Setting from 'app/components/Setting.jsx';
 
 const routes = (
   <Router history={history}>

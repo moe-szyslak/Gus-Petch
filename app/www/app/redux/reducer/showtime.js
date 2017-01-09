@@ -1,4 +1,4 @@
-import { SHOWTIME, POSTER, LANGUAGE, THEME, LOADING, MOVIE } from './../constant/showtime';
+import { SHOWTIME, POSTER, LANGUAGE, THEME, LOADING, MOVIE } from 'app/redux/constant/showtime';
 
 function showtime(state = {
   showtime: {

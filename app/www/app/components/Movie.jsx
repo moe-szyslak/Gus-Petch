@@ -10,9 +10,9 @@
 
 import React, { Component, PropTypes } from 'react';
 
-import store from '../redux/store';
-import { activeMovie } from '../redux/action/showtime';
-import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableScroll, showMovie411 } from '../util/DOMActions';
+import store from 'app/redux/store';
+import { activeMovie } from 'app/redux/action/showtime';
+import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableScroll, showMovie411 } from 'app/util/DOMActions';
 
 class Movie extends Component {
   componentWillMount() {
