@@ -1607,6 +1607,10 @@ gauge@~2.7.1:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+geezer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/geezer/-/geezer-1.0.1.tgz#88a3ba8b6a1471d048b8df03feda072138b89a2d"
+
 generate-function@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/generate-function/-/generate-function-2.0.0.tgz#6858fe7c0969b7d4e9093337647ac79f60dfbe74"
