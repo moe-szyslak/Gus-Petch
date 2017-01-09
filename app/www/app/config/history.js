@@ -1,5 +1,5 @@
 import { useRouterHistory } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
+import { createHashHistory } from 'history';
 
 const history = useRouterHistory(createHashHistory)();
 
