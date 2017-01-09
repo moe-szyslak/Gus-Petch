@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import geezer from 'geezer';
 
 import store from '../redux/store';
 import i18n from '../config/i18n';
-import geez from './../util/geez';
 import amClass from './../util/amClass';
 
 import CinemaInfo from './CinemaInfo.jsx';
@@ -58,7 +58,7 @@ class Rick extends Component {
     return (
       <div className="view-rick">
         <h1 className={`light-font-weight ${amClass(this.state.language)}`} style={{ marginTop: '0' }}>
-          { this.state.language === 'am' ? geez(uniqueMovies) : uniqueMovies }
+          { this.state.language === 'am' ? geezer(uniqueMovies) : uniqueMovies }
           { ` ${i18n[this.state.language][uniqueMovies > 1 ? 'MOVIES' : 'MOVIE']}` }
         </h1>
 
