@@ -15,7 +15,7 @@ import { activeMovie } from 'app/redux/action/showtime';
 import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableScroll, showMovie411 } from 'app/util/DOMActions';
 
 class Movie extends Component {
-  componentWillMount() {
+  componentDidMount() {
     enableScroll(false);
 
     setTimeout(() => {
@@ -23,9 +23,7 @@ class Movie extends Component {
         window.StatusBar.hide();
       }
     }, 250);
-  }
 
-  componentDidMount() {
     let state = store.getState();
     const { cinema, movie } = this.props.params;
 
@@ -47,9 +45,7 @@ class Movie extends Component {
   }
 
   render() {
-    return (
-      <div />
-    );
+    return null;
   }
 }
 
