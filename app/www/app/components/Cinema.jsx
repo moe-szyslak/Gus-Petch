@@ -16,6 +16,7 @@ class Cinema extends Component {
 
     const state = store.getState();
     this.state = {
+      language: state.language,
       poster: state.poster,
       show: state.showtime.show,
     };
@@ -25,6 +26,7 @@ class Cinema extends Component {
     this.unsubscribe = store.subscribe(() => {
       const state = store.getState();
       this.setState({
+        language: state.language,
         poster: state.poster,
         show: state.showtime.show,
       });
@@ -63,24 +65,24 @@ class Cinema extends Component {
               <div className="poster-container">
                 <img
                   className="img-poster"
-                  src={encodeURI(this.state.poster[movie.poster] || this.poster(movie.poster))}
+                  src={encodeURI(this.state.poster[movie.posterURL] || this.poster(movie.posterURL))}
                   alt={movie.title}
                 />
               </div>
 
               <div className="info-container">
                 <div className={`movie-title ${containsFidel(movie.title) ? '_am_' : ''}`}>{ movie.title }</div>
-                <div className="movie-showtime _am_">{movie.time}</div>
+                <div className={`movie-showtime ${this.state.language === 'am' ? '_am_' : ''}`}>{ movie.showtime[this.state.language === 'am' ? 'et' : 'gc'] }</div>
                 {
-                  movie.omdb && !Number.isNaN(Number(movie.omdb.tomatoMeter)) ?
+                  movie.detail && !Number.isNaN(Number(movie.detail.tomatoMeter)) ?
                     <div className="movie-score-container">
                       <img
                         className="movie-score-img"
                         alt="tomato meter"
                         // eslint-disable-next-line
-                        src={Number(movie.omdb.tomatoMeter) > 70 ? CERTIFIED_FRESH : Number(movie.omdb.tomatoMeter) > 59 ? FRESH_TOMATO : ROTTEN}
+                        src={Number(movie.detail.tomatoMeter) > 70 ? CERTIFIED_FRESH : Number(movie.detail.tomatoMeter) > 59 ? FRESH_TOMATO : ROTTEN}
                       />
-                      <span className="movie-score">{movie.omdb.tomatoMeter}</span>
+                      <span className="movie-score">{movie.detail.tomatoMeter}</span>
                     </div>
                     : <span />
                 }
