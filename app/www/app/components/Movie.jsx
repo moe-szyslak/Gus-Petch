@@ -31,14 +31,14 @@ class Movie extends Component {
 
     showMovieBackground(true);
     activeMovie(state.showtime.show[cinema][movie] || Object.create(null));
-    showPoster(true, state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].poster : '']).then(() => {
+    showPoster(true, state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].posterURL : '']).then(() => {
       showCloseButton(true);
       showMovie411(true);
     });
 
     this.unsubscribe = store.subscribe(() => {
       state = store.getState();
-      setPosterSrc(state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].poster : '']);
+      setPosterSrc(state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].posterURL : '']);
     });
   }
 
