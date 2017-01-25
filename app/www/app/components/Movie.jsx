@@ -8,7 +8,7 @@
  * "display" anything.
  */
 
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import store from 'app/redux/store';
 import { activeMovie } from 'app/redux/action/showtime';
@@ -17,7 +17,6 @@ import { showCloseButton, showMovieBackground, showPoster, setPosterSrc, enableS
 class Movie extends Component {
   componentDidMount() {
     enableScroll(false);
-
     setTimeout(() => {
       if (window.StatusBar !== undefined) {
         window.StatusBar.hide();
@@ -27,17 +26,20 @@ class Movie extends Component {
     let state = store.getState();
     const { cinema, movie } = this.props.params;
 
-    showMovieBackground(true);
-    activeMovie(state.showtime.show[cinema][movie] || Object.create(null));
-    showPoster(true, state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].posterURL : '']).then(() => {
-      showCloseButton(true);
-      showMovie411(true);
-    });
-
     this.unsubscribe = store.subscribe(() => {
       state = store.getState();
       setPosterSrc(state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].posterURL : '']);
     });
+
+    showMovie411(false)
+      .then(() => {
+        showMovieBackground(true);
+        activeMovie(state.showtime.show[cinema][movie] || Object.create(null));
+        showPoster(true, state.poster[state.showtime.show[cinema][movie] ? state.showtime.show[cinema][movie].posterURL : '']).then(() => {
+          showCloseButton(true);
+          showMovie411(true);
+        });
+      });
   }
 
   componentWillUnmount() {
