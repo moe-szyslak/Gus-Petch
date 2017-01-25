@@ -12,6 +12,29 @@ import Header from 'app/components/Header.jsx';
 import Menu from 'app/components/Menu.jsx';
 import Movie411 from 'app/components/Movie411.jsx';
 
+const goBack = () => {
+  history.goBack();
+  showMovieBackground(false);
+  showCloseButton(false, 250).then(() => {
+    if (window.StatusBar !== undefined) {
+      window.StatusBar.show();
+    }
+  });
+  enableScroll(true);
+  showMovie411(false, 250).then(() => {
+    showPoster(false).then(() => {
+      setPosterSrc('');
+      activeMovie(null);
+    });
+  });
+};
+
+const openWebsite = (url) => {
+  if (url !== 'N/A' && window.cordova && window.cordova.InAppBrowser) {
+    window.cordova.InAppBrowser.open(encodeURI(url), '_system');
+  }
+};
+
 class Showtime extends Component {
   constructor(props) {
     super(props);
@@ -47,29 +70,6 @@ class Showtime extends Component {
     this.unsubscribe();
   }
 
-  openWebsite(url) {
-    if (url !== 'N/A' && window.cordova && window.cordova.InAppBrowser) {
-      window.cordova.InAppBrowser.open(encodeURI(url), '_system');
-    }
-  }
-
-  goBack() {
-    history.goBack();
-    showMovieBackground(false);
-    showCloseButton(false, 250).then(() => {
-      if (window.StatusBar !== undefined) {
-        window.StatusBar.show();
-      }
-    });
-    enableScroll(true);
-    showMovie411(false, 250).then(() => {
-      showPoster(false).then(() => {
-        setPosterSrc('');
-        activeMovie(null);
-      });
-    });
-  }
-
   render() {
     return (
       <div className={`showtime-app theme-${this.state.theme} language-${this.state.language}`}>
@@ -87,7 +87,7 @@ class Showtime extends Component {
 
         <Menu />
 
-        <button className="close-button" onClick={this.goBack}>
+        <button className="close-button" onClick={goBack}>
           <i className="icon-close" />
         </button>
 
@@ -98,8 +98,8 @@ class Showtime extends Component {
         <Movie411
           language={this.state.language}
           movie={this.state.movie}
-          open={this.openWebsite}
-          back={this.goBack}
+          open={openWebsite}
+          back={goBack}
         />
       </div>
     );
@@ -107,7 +107,7 @@ class Showtime extends Component {
 }
 
 Showtime.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
 };
 
 module.exports = Showtime;
