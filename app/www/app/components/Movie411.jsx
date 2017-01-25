@@ -77,7 +77,12 @@ function Movie411({ language, movie, open, back }) {
               {i18n[language].VIDEO}
             </div>
 
-            <video src={movie.detail.imdbVideo} />
+            <video
+              src={movie.detail.imdbVideo.url}
+              poster={movie.detail.imdbVideo.poster}
+              playsinline
+              webkit-playsinline
+            />
           </div> : <span />
         }
         <button
