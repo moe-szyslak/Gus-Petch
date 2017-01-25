@@ -10,6 +10,6 @@ import 'app/static/font/iconmoon/style.css';
 import 'app/less/app.less';
 
 // Turn on before build
-// window.document.addEventListener('deviceready', () => {
+window.document.addEventListener('deviceready', () => {
   render(routes, document.getElementById('app'));
-// }, false);
+}, false);
