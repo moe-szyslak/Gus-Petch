@@ -71,7 +71,7 @@ class Cinema extends Component {
               </div>
 
               <div className="info-container">
-                <div className={`movie-title ${containsFidel(movie.title) ? '_am_' : ''}`}>{ movie.title }</div>
+                <div className={`movie-title ${containsFidel(movie.title) ? '_am_' : ''}`}>{ (movie && movie.detail) ? movie.detail.Title : movie && movie.title }</div>
                 <div className={`movie-showtime ${this.state.language === 'am' ? '_am_' : ''}`}>{ movie.showtime[this.state.language === 'am' ? 'et' : 'gc'] }</div>
                 {
                   movie.detail && !Number.isNaN(Number(movie.detail.tomatoMeter)) ?
