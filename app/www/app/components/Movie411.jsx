@@ -92,7 +92,9 @@ function Movie411({ language, movie, open, back }) {
                 playsInline
               />
 
-              <button className="video-container__control" onClick={play}>Play</button>
+              <div className="video-container__control video-control">
+                <button className="video-control__play" onClick={play}>Play</button>
+              </div>
             </div>
           </div> : <span />
         }
