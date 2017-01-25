@@ -81,7 +81,6 @@ function Movie411({ language, movie, open, back }) {
               src={movie.detail.imdbVideo.url}
               poster={movie.detail.imdbVideo.poster}
               playsinline
-              webkit-playsinline
             />
           </div> : <span />
         }
