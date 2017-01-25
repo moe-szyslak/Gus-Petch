@@ -80,7 +80,7 @@ function Movie411({ language, movie, open, back }) {
             <video
               src={movie.detail.imdbVideo.url}
               poster={movie.detail.imdbVideo.poster}
-              playsinline
+              playsInline
             />
           </div> : <span />
         }
