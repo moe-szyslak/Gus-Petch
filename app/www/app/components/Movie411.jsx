@@ -77,7 +77,7 @@ function Movie411({ language, movie, open, back }) {
               {i18n[language].VIDEO}
             </div>
 
-            <video src={movie.detail.imdbVideo} style={{ width: '100%', height: 'auto' }} />
+            <video src={movie.detail.imdbVideo} />
           </div> : <span />
         }
         <button
