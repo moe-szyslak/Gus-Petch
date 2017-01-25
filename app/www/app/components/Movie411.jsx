@@ -17,7 +17,7 @@ function Movie411({ language, movie, open, back }) {
   return (
     <div className="movie-411">
       <div className="info-container">
-        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie && movie.title}</h2>
+        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{(movie && movie.detail) ? movie.detail.Title : movie && movie.title}</h2>
         <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
         <p className="movie-description">
           { movie && movie.detail && movie.detail.Plot }
