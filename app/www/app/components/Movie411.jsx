@@ -18,53 +18,53 @@ function Movie411({ language, movie, open, back }) {
     <div className="movie-411">
       <div className="info-container">
         <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie && movie.title}</h2>
-        <p className="movie-showtime _am_">{movie && movie.time}</p>
+        <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
         <p className="movie-description">
-          { movie && movie.omdb && movie.omdb.Plot }
+          { movie && movie.detail && movie.detail.Plot }
         </p>
         {
-          (movie && movie.omdb) ? <h3 className={`movie-information ${amClass(language)}`}>
+          (movie && movie.detail) ? <h3 className={`movie-information ${amClass(language)}`}>
             <table>
               <caption>{i18n[language].INFORMATION}</caption>
               <tbody>
                 <tr>
                   <td>Rated</td>
-                  <td>{ movie.omdb.Rated }</td>
+                  <td>{ movie.detail.Rated }</td>
                 </tr>
 
                 <tr>
                   <td>Released</td>
-                  <td>{ movie.omdb.Released }</td>
+                  <td>{ movie.detail.Released }</td>
                 </tr>
 
                 <tr>
                   <td>Genre</td>
-                  <td>{ movie.omdb.Genre }</td>
+                  <td>{ movie.detail.Genre }</td>
                 </tr>
 
                 <tr>
                   <td>Director</td>
-                  <td>{ movie.omdb.Director }</td>
+                  <td>{ movie.detail.Director }</td>
                 </tr>
 
                 <tr>
                   <td>Cast</td>
-                  <td>{ movie.omdb.Actors }</td>
+                  <td>{ movie.detail.Actors }</td>
                 </tr>
 
                 <tr>
                   <td>Run Time</td>
-                  <td>{ movie.omdb.Runtime }</td>
+                  <td>{ movie.detail.Runtime }</td>
                 </tr>
 
                 <tr>
                   <td>Website</td>
                   <td
-                    className={`${movie.omdb.Website === 'N/A' ? '' : 'movie-website'}`}
-                    onClick={() => open(movie.omdb.Website)}
+                    className={`${movie.detail.Website === 'N/A' ? '' : 'movie-website'}`}
+                    onClick={() => open(movie.detail.Website)}
                   >
-                    <span>{ movie.omdb.Website.substring(0, 24) }</span>
-                    { movie.omdb.Website.length > 24 ? <span>...</span> : <span /> }
+                    <span>{ movie.detail.Website.substring(0, 24) }</span>
+                    { movie.detail.Website.length > 24 ? <span>...</span> : <span /> }
                   </td>
                 </tr>
               </tbody>
@@ -72,14 +72,12 @@ function Movie411({ language, movie, open, back }) {
           </h3> : <span />
         }
         {
-          (movie && movie.video) ? <div>
+          (movie && movie.detail) ? <div>
             <div className={`video-label ${amClass(language)}`}>
               {i18n[language].VIDEO}
             </div>
 
-            <div className="video-container">
-              <iframe src={movie.video} frameBorder="0" allowFullScreen />
-            </div>
+            <video src={movie.detail.imdbVideo} style={{ width: '100%', height: 'auto' }} />
           </div> : <span />
         }
         <button
