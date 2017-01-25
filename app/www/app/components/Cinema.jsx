@@ -98,6 +98,7 @@ class Cinema extends Component {
 }
 
 Cinema.propTypes = {
+  // eslint-disable-next-line
   children: PropTypes.element,
   params: PropTypes.shape({
     cinema: PropTypes.string.isRequired,
