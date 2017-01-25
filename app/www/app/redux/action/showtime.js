@@ -167,8 +167,8 @@ function poster(url) {
         // rebuilding poster on LFP_CLEAN...
         [c1, c2, c3].forEach((cinema) => {
           cinema.forEach((movie) => {
-            if (Object.prototype.hasOwnProperty.call(LFP, movie.poster)) {
-              LFP_CLEAN[movie.poster] = LFP[movie.poster];
+            if (Object.prototype.hasOwnProperty.call(LFP, movie.posterURL)) {
+              LFP_CLEAN[movie.posterURL] = LFP[movie.posterURL];
             }
           });
         });
