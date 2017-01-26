@@ -7,9 +7,8 @@ import i18n from 'app/config/i18n';
 import amClass from 'app/util/amClass';
 import containsFidel from 'app/util/containsFidel';
 
-const play = () => {
-  const video = window.document.querySelector('video');
-  console.log(video.play());
+const play = (e) => {
+  e.target.play();
 };
 
 /**
@@ -84,18 +83,13 @@ function Movie411({ language, movie, open, back }) {
               {i18n[language].VIDEO}
             </div>
 
-            <div className="video-container">
-              <video
-                className="video-container__video"
-                src={movie.detail.imdbVideo.url}
-                poster={movie.detail.imdbVideo.poster}
-                playsInline
-              />
-
-              <div className="video-container__control video-container-control">
-                <button className="video-container-control__play" onClick={play}>Play</button>
-              </div>
-            </div>
+            <video
+              src={movie.detail.imdbVideo.url}
+              poster={movie.detail.imdbVideo.poster}
+              playsInline
+              controls
+              onClick={e => play(e)}
+            />
           </div> : <span />
         }
         <button
