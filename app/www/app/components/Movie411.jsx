@@ -7,9 +7,8 @@ import i18n from 'app/config/i18n';
 import amClass from 'app/util/amClass';
 import containsFidel from 'app/util/containsFidel';
 
-const play = () => {
-  const video = window.document.querySelector('video');
-  console.log(video.play());
+const play = (e) => {
+  e.target.play();
 };
 
 /**
@@ -20,15 +19,30 @@ const play = () => {
  * - The DOM is heavily animated, once entered there will be very little updates on the view.
  *   So going _static_ will actually be _faster_ (chasing that sweet 60fps).
  */
-function Movie411({ language, movie, open, back }) {
+function Movie411({ language, movie, back }) {
   return (
     <div className="movie-411">
       <div className="info-container">
-        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{(movie && movie.detail) ? movie.detail.Title : movie && movie.title}</h2>
+        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie ? movie.title : ''}</h2>
         <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
         <p className="movie-description">
-          { movie && movie.detail && movie.detail.Plot }
+          { movie && movie.detail && movie.detail.synopsis }
         </p>
+        {
+          (movie && movie.detail) ? <div>
+            <div className={`video-label ${amClass(language)}`}>
+              {i18n[language].VIDEO}
+            </div>
+
+            <video
+              src={movie.detail.trailer}
+              poster={movie.detail.videoPoster}
+              playsInline
+              controls
+              onClick={e => play(e)}
+            />
+          </div> : <span />
+        }
         {
           (movie && movie.detail) ? <h3 className={`movie-information ${amClass(language)}`}>
             <table>
@@ -36,67 +50,36 @@ function Movie411({ language, movie, open, back }) {
               <tbody>
                 <tr>
                   <td>Rated</td>
-                  <td>{ movie.detail.Rated }</td>
+                  <td>{ movie.detail.contentRating }</td>
                 </tr>
 
                 <tr>
-                  <td>Released</td>
-                  <td>{ movie.detail.Released }</td>
+                  <td>In Theaters</td>
+                  <td>{ movie.detail.release }</td>
                 </tr>
 
                 <tr>
                   <td>Genre</td>
-                  <td>{ movie.detail.Genre }</td>
+                  <td>{ movie.detail.genre.join(', ') }</td>
                 </tr>
 
                 <tr>
                   <td>Director</td>
-                  <td>{ movie.detail.Director }</td>
+                  <td>{ movie.detail.director.map(director => director.name).join(', ') }</td>
                 </tr>
 
                 <tr>
                   <td>Cast</td>
-                  <td>{ movie.detail.Actors }</td>
+                  <td>{ movie.detail.actors.map(actor => actor.name).join(', ') }</td>
                 </tr>
 
                 <tr>
-                  <td>Run Time</td>
-                  <td>{ movie.detail.Runtime }</td>
-                </tr>
-
-                <tr>
-                  <td>Website</td>
-                  <td
-                    className={`${movie.detail.Website === 'N/A' ? '' : 'movie-website'}`}
-                    onClick={() => open(movie.detail.Website)}
-                  >
-                    <span>{ movie.detail.Website.substring(0, 24) }</span>
-                    { movie.detail.Website.length > 24 ? <span>...</span> : <span /> }
-                  </td>
+                  <td>Runtime</td>
+                  <td>{ movie.detail.runtime }</td>
                 </tr>
               </tbody>
             </table>
           </h3> : <span />
-        }
-        {
-          (movie && movie.detail) ? <div>
-            <div className={`video-label ${amClass(language)}`}>
-              {i18n[language].VIDEO}
-            </div>
-
-            <div className="video-container">
-              <video
-                className="video-container__video"
-                src={movie.detail.imdbVideo.url}
-                poster={movie.detail.imdbVideo.poster}
-                playsInline
-              />
-
-              <div className="video-container__control video-container-control">
-                <button className="video-container-control__play" onClick={play}>Play</button>
-              </div>
-            </div>
-          </div> : <span />
         }
         <button
           style={{ margin: '1em 0% 1em 10%', width: '80%', padding: '.75em', minWidth: '12em' }}
@@ -112,7 +95,6 @@ Movie411.propTypes = {
   language: PropTypes.string.isRequired,
   // eslint-disable-next-line
   movie: PropTypes.object,
-  open: PropTypes.func.isRequired,
   back: PropTypes.func.isRequired,
 };
 
