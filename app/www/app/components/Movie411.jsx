@@ -19,14 +19,14 @@ const play = (e) => {
  * - The DOM is heavily animated, once entered there will be very little updates on the view.
  *   So going _static_ will actually be _faster_ (chasing that sweet 60fps).
  */
-function Movie411({ language, movie, open, back }) {
+function Movie411({ language, movie, back }) {
   return (
     <div className="movie-411">
       <div className="info-container">
-        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{(movie && movie.detail) ? movie.detail.Title : movie && movie.title}</h2>
+        <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie ? movie.title : ''}</h2>
         <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
         <p className="movie-description">
-          { movie && movie.detail && movie.detail.Plot }
+          { movie && movie.detail && movie.detail.synopsis }
         </p>
         {
           (movie && movie.detail) ? <h3 className={`movie-information ${amClass(language)}`}>
@@ -35,43 +35,22 @@ function Movie411({ language, movie, open, back }) {
               <tbody>
                 <tr>
                   <td>Rated</td>
-                  <td>{ movie.detail.Rated }</td>
-                </tr>
-
-                <tr>
-                  <td>Released</td>
-                  <td>{ movie.detail.Released }</td>
+                  <td>{ movie.detail.contentRating }</td>
                 </tr>
 
                 <tr>
                   <td>Genre</td>
-                  <td>{ movie.detail.Genre }</td>
+                  <td>{ movie.detail.genre.join(', ') }</td>
                 </tr>
 
                 <tr>
                   <td>Director</td>
-                  <td>{ movie.detail.Director }</td>
+                  <td>{ movie.detail.director.map(director => director.name).join(', ') }</td>
                 </tr>
 
                 <tr>
                   <td>Cast</td>
-                  <td>{ movie.detail.Actors }</td>
-                </tr>
-
-                <tr>
-                  <td>Run Time</td>
-                  <td>{ movie.detail.Runtime }</td>
-                </tr>
-
-                <tr>
-                  <td>Website</td>
-                  <td
-                    className={`${movie.detail.Website === 'N/A' ? '' : 'movie-website'}`}
-                    onClick={() => open(movie.detail.Website)}
-                  >
-                    <span>{ movie.detail.Website.substring(0, 24) }</span>
-                    { movie.detail.Website.length > 24 ? <span>...</span> : <span /> }
-                  </td>
+                  <td>{ movie.detail.actors.map(actor => actor.name).join(', ') }</td>
                 </tr>
               </tbody>
             </table>
@@ -84,8 +63,8 @@ function Movie411({ language, movie, open, back }) {
             </div>
 
             <video
-              src={movie.detail.imdbVideo.url}
-              poster={movie.detail.imdbVideo.poster}
+              src={movie.detail.trailer}
+              poster={movie.detail.videoPoster}
               playsInline
               controls
               onClick={e => play(e)}
@@ -106,7 +85,6 @@ Movie411.propTypes = {
   language: PropTypes.string.isRequired,
   // eslint-disable-next-line
   movie: PropTypes.object,
-  open: PropTypes.func.isRequired,
   back: PropTypes.func.isRequired,
 };
 

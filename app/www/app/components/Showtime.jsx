@@ -29,12 +29,6 @@ const goBack = () => {
   });
 };
 
-const openWebsite = (url) => {
-  if (url !== 'N/A' && window.cordova && window.cordova.InAppBrowser) {
-    window.cordova.InAppBrowser.open(encodeURI(url), '_system');
-  }
-};
-
 class Showtime extends Component {
   constructor(props) {
     super(props);
@@ -98,7 +92,6 @@ class Showtime extends Component {
         <Movie411
           language={this.state.language}
           movie={this.state.movie}
-          open={openWebsite}
           back={goBack}
         />
       </div>
