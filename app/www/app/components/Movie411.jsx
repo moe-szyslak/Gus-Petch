@@ -25,9 +25,6 @@ function Movie411({ language, movie, back }) {
       <div className="info-container">
         <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie ? movie.title : ''}</h2>
         <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
-        <p className="movie-description">
-          { movie && movie.detail && movie.detail.synopsis }
-        </p>
         {
           (movie && movie.detail) ? <h3 className={`movie-information ${amClass(language)}`}>
             <table>
@@ -71,6 +68,9 @@ function Movie411({ language, movie, back }) {
             />
           </div> : <span />
         }
+        <p className="movie-description">
+          { movie && movie.detail && movie.detail.synopsis }
+        </p>
         <button
           style={{ margin: '1em 0% 1em 10%', width: '80%', padding: '.75em', minWidth: '12em' }}
           className={`btn ${amClass(language)}`}
