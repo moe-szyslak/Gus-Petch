@@ -71,18 +71,18 @@ class Cinema extends Component {
               </div>
 
               <div className="info-container">
-                <div className={`movie-title ${containsFidel(movie.title) ? '_am_' : ''}`}>{ (movie && movie.detail) ? movie.detail.Title : movie && movie.title }</div>
+                <div className={`movie-title ${containsFidel(movie.title) ? '_am_' : ''}`}>{ movie.title }</div>
                 <div className={`movie-showtime ${this.state.language === 'am' ? '_am_' : ''}`}>{ movie.showtime[this.state.language === 'am' ? 'et' : 'gc'] }</div>
                 {
-                  movie.detail && !Number.isNaN(Number(movie.detail.tomatoMeter)) ?
+                  movie.detail && !Number.isNaN(Number(movie.detail.aggregateRating.ratingValue)) ?
                     <div className="movie-score-container">
                       <img
                         className="movie-score-img"
                         alt="tomato meter"
                         // eslint-disable-next-line
-                        src={Number(movie.detail.tomatoMeter) > 70 ? CERTIFIED_FRESH : Number(movie.detail.tomatoMeter) > 59 ? FRESH_TOMATO : ROTTEN}
+                        src={Number(movie.detail.aggregateRating.ratingValue) > 70 ? CERTIFIED_FRESH : Number(movie.detail.aggregateRating.ratingValue) > 59 ? FRESH_TOMATO : ROTTEN}
                       />
-                      <span className="movie-score">{movie.detail.tomatoMeter}</span>
+                      <span className="movie-score">{movie.detail.aggregateRating.ratingValue}</span>
                     </div>
                     : <span />
                 }
