@@ -81,7 +81,7 @@ class Showtime extends Component {
 
         <Menu />
 
-        <button className="close-button" onClick={goBack}>
+        <button className="close-button" onTouchStart={goBack}>
           <i className="icon-close" />
         </button>
 

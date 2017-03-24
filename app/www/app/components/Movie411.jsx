@@ -25,6 +25,24 @@ function Movie411({ language, movie, back }) {
       <div className="info-container">
         <h2 className={`light-font-weight movie-title ${containsFidel(movie && movie.title) ? '_am_' : ''}`}>{movie ? movie.title : ''}</h2>
         <p className={`movie-showtime ${language === 'am' ? '_am_' : ''}`}>{ movie && movie.showtime && movie.showtime[language === 'am' ? 'et' : 'gc'] }</p>
+        <p className="movie-description">
+          { movie && movie.detail && movie.detail.synopsis }
+        </p>
+        {
+          (movie && movie.detail) ? <div>
+            <div className={`video-label ${amClass(language)}`}>
+              {i18n[language].VIDEO}
+            </div>
+
+            <video
+              src={movie.detail.trailer}
+              poster={movie.detail.videoPoster}
+              playsInline
+              controls
+              onClick={e => play(e)}
+            />
+          </div> : <span />
+        }
         {
           (movie && movie.detail) ? <h3 className={`movie-information ${amClass(language)}`}>
             <table>
@@ -33,6 +51,11 @@ function Movie411({ language, movie, back }) {
                 <tr>
                   <td>Rated</td>
                   <td>{ movie.detail.contentRating }</td>
+                </tr>
+
+                <tr>
+                  <td>In Theaters</td>
+                  <td>{ movie.detail.release }</td>
                 </tr>
 
                 <tr>
@@ -49,28 +72,15 @@ function Movie411({ language, movie, back }) {
                   <td>Cast</td>
                   <td>{ movie.detail.actors.map(actor => actor.name).join(', ') }</td>
                 </tr>
+
+                <tr>
+                  <td>Runtime</td>
+                  <td>{ movie.detail.runtime }</td>
+                </tr>
               </tbody>
             </table>
           </h3> : <span />
         }
-        {
-          (movie && movie.detail) ? <div>
-            <div className={`video-label ${amClass(language)}`}>
-              {i18n[language].VIDEO}
-            </div>
-
-            <video
-              src={movie.detail.trailer}
-              poster={movie.detail.videoPoster}
-              playsInline
-              controls
-              onClick={e => play(e)}
-            />
-          </div> : <span />
-        }
-        <p className="movie-description">
-          { movie && movie.detail && movie.detail.synopsis }
-        </p>
         <button
           style={{ margin: '1em 0% 1em 10%', width: '80%', padding: '.75em', minWidth: '12em' }}
           className={`btn ${amClass(language)}`}

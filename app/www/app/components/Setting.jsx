@@ -37,12 +37,6 @@ class Setting extends Component {
     theme(this.state.theme === 'night' ? 'light' : 'night');
   }
 
-  open(url) {
-    if (window.cordova && window.cordova.InAppBrowser) {
-      window.cordova.InAppBrowser.open(encodeURI(url), '_system');
-    }
-  }
-
   render() {
     return (
       <div className="view-setting">
@@ -60,14 +54,6 @@ class Setting extends Component {
           className={`btn ${amClass(this.state.language)}`}
         >
           { i18n[this.state.language].CHANGE_THEME }
-        </button>
-
-        <button
-          onClick={() => this.open('mailto:moe.heroku@gmail.com?subject=Feedback')}
-          className={`btn ${amClass(this.state.language)}`}
-          style={{ marginTop: '2em' }}
-        >
-          { i18n[this.state.language].CONTACT }
         </button>
       </div>
     );
