@@ -87,42 +87,32 @@ function showtime() {
               loading: false,
             });
 
-            if (apiShowtime.err || !apiShowtime.ok) {
+            const show = apiShowtime.body.show;
+            /**
+             * when the server is being updated; all cinemas are removed
+             * the server will be down for ~30 minutes or so. LF will stay intact
+             * and show cached resources; if any.
+             */
+            if (show.c3.length === 0 && show.c2.length === 0 && show.c1.length === 0) {
               if (window.navigator.notification) {
                 window.navigator.notification.alert(
-                  'Showtime is currently unavailable. Try again latter.',
+                  'EdnaMall\'s Showtime is currently empty.',
                   () => {},
-                  'Empty 😝',
+                  'No Shows 🤔',
                   'OK'
                 );
               }
-            } else {
-              const show = apiShowtime.body.show;
-              /**
-               * when the server is being updated; all cinemas are removed
-               * the server will be down for ~30 minutes or so. LF will stay intact
-               * and show cached resources; if any.
-               */
-              if (show.c3.length === 0 && show.c2.length === 0 && show.c1.length === 0) {
-                if (window.navigator.notification) {
-                  window.navigator.notification.alert(
-                    'EdnaMall\'s Showtime is currently empty.',
-                    () => {},
-                    'No Shows 🤔',
-                    'OK'
-                  );
-                }
-              } else {
-                store.dispatch({
-                  type: SHOWTIME,
-                  showtime: apiShowtime.body,
-                });
 
-                localforage.setItem(LF_SHOWTIME, apiShowtime.body);
-              }
+              return;
             }
-          })
-          .catch(() => {
+
+            store.dispatch({
+              type: SHOWTIME,
+              showtime: apiShowtime.body,
+            });
+
+            localforage.setItem(LF_SHOWTIME, apiShowtime.body);
+          }, (err) => {
             store.dispatch({
               type: LOADING,
               loading: false,
@@ -130,9 +120,9 @@ function showtime() {
 
             if (window.navigator.notification) {
               window.navigator.notification.alert(
-                'Unable to reach Showtime server. Try again latter.',
+                err.status === 418 ? 'EdnaMall\'s Showtime is currently empty. Try gain latter.' : 'Unable to reach Showtime server. Try again latter.',
                 () => {},
-                'No Internet 😱',
+                err.status === 418 ? 'No Shows 🤔' : 'No Internet 😱',
                 'OK'
               );
             }
