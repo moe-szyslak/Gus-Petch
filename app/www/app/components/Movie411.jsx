@@ -6,6 +6,8 @@ import React, { PropTypes } from 'react';
 import i18n from 'app/config/i18n';
 import amClass from 'app/util/amClass';
 import containsFidel from 'app/util/containsFidel';
+import Artist from 'app/components/Artist.jsx';
+import Video from 'app/components/Video.jsx';
 
 const play = (e) => {
   e.target.play();
@@ -34,13 +36,17 @@ function Movie411({ language, movie, back }) {
               {i18n[language].VIDEO}
             </div>
 
-            <video
-              src={movie.detail.trailer}
-              poster={movie.detail.videoPoster}
-              playsInline
-              controls
-              onClick={e => play(e)}
-            />
+            <div className="trailer-container">
+              { movie.detail.trailers.map(trailer => <Video key={trailer.id} trailer={trailer} play={play} />) }
+            </div>
+
+            <div className={`cast-label ${amClass(language)}`}>
+              { i18n[language].CAST }
+            </div>
+
+            <div className="artist-container">
+              { movie.detail.actors.map(actor => <Artist key={actor.sameAs} artist={actor} />) }
+            </div>
           </div> : <span />
         }
         {
@@ -66,11 +72,6 @@ function Movie411({ language, movie, back }) {
                 <tr>
                   <td>Director</td>
                   <td>{ movie.detail.director.map(director => director.name).join(', ') }</td>
-                </tr>
-
-                <tr>
-                  <td>Cast</td>
-                  <td>{ movie.detail.actors.map(actor => actor.name).join(', ') }</td>
                 </tr>
 
                 <tr>
