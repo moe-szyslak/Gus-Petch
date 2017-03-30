@@ -35,8 +35,8 @@ function Movie411({ language, movie, back }) {
             </div>
 
             <video
-              src={movie.detail.trailer}
-              poster={movie.detail.videoPoster}
+              src={movie.detail.trailers[0].urls.directHls}
+              style={{ background: `transparent url('${movie.detail.trailers[0].thumbUrl}') 50% 50% / cover no-repeat` }}
               playsInline
               controls
               onClick={e => play(e)}
