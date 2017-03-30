@@ -9,6 +9,7 @@ module.exports = {
     CHANGE_THEME: 'ገጽታ ቀይር',
     CONTACT: 'አስተያየት ይላኩ',
     CLOSE: 'ዝጋ',
+    CAST: 'ተዋንያን',
   },
 
   en: {
@@ -21,5 +22,6 @@ module.exports = {
     CHANGE_THEME: 'Change Theme',
     CONTACT: 'Send Feedback',
     CLOSE: 'Close',
+    CAST: 'Cast',
   },
 };

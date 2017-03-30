@@ -35,10 +35,6 @@ function Movie411({ language, movie, back }) {
               {i18n[language].VIDEO}
             </div>
 
-            <div className="artist-container">
-              { movie.detail.actors.map(actor => <Artist artist={actor} />) }
-            </div>
-
             <video
               src={movie.detail.trailers[0].urls.directHls}
               style={{ background: `transparent url('${movie.detail.trailers[0].thumbUrl}') 50% 50% / cover no-repeat` }}
@@ -46,6 +42,14 @@ function Movie411({ language, movie, back }) {
               controls
               onClick={e => play(e)}
             />
+
+            <div className={`cast-label ${amClass(language)}`}>
+              {i18n[language].CAST}
+            </div>
+
+            <div className="artist-container">
+              { movie.detail.actors.map(actor => <Artist artist={actor} />) }
+            </div>
           </div> : <span />
         }
         {
@@ -71,11 +75,6 @@ function Movie411({ language, movie, back }) {
                 <tr>
                   <td>Director</td>
                   <td>{ movie.detail.director.map(director => director.name).join(', ') }</td>
-                </tr>
-
-                <tr>
-                  <td>Cast</td>
-                  <td>{ movie.detail.actors.map(actor => actor.name).join(', ') }</td>
                 </tr>
 
                 <tr>
