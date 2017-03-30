@@ -6,6 +6,7 @@ import React, { PropTypes } from 'react';
 import i18n from 'app/config/i18n';
 import amClass from 'app/util/amClass';
 import containsFidel from 'app/util/containsFidel';
+import Artist from 'app/components/Artist.jsx';
 
 const play = (e) => {
   e.target.play();
@@ -32,6 +33,10 @@ function Movie411({ language, movie, back }) {
           (movie && movie.detail) ? <div>
             <div className={`video-label ${amClass(language)}`}>
               {i18n[language].VIDEO}
+            </div>
+
+            <div className="artist-container">
+              { movie.detail.actors.map(actor => <Artist artist={actor} />) }
             </div>
 
             <video
