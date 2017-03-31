@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-function Video({ trailer, play }) {
+function Video({ trailer }) {
   return (
     <div className="trailer">
       <video
@@ -9,7 +9,6 @@ function Video({ trailer, play }) {
         style={{ background: `transparent url('${trailer.thumbUrl}') 50% 50% / cover no-repeat` }}
         playsInline
         controls
-        onClick={e => play(e)}
       />
 
       <span className="trailer__title">{ trailer.title }</span>
@@ -19,7 +18,6 @@ function Video({ trailer, play }) {
 
 Video.propTypes = {
   trailer: PropTypes.shape().isRequired,
-  play: PropTypes.func.isRequired,
 };
 
 module.exports = Video;
