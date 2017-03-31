@@ -113,7 +113,7 @@ function showPoster(show = true, src = '') {
       const rect = activePoster.getBoundingClientRect();
       const { top, left } = rect; // number
       let width = window.getComputedStyle(activePoster).width; // string
-      width = Number(width.substring(0, width.length - 2)); // number
+      width = Number.parseInt(width.substring(0, width.length - 2), 10); // number
       const screenWidth = window.screen.availWidth + 1;
 
       // overlaying image on the active poster...
@@ -134,7 +134,7 @@ function showPoster(show = true, src = '') {
         anime({
           targets: moviePoster,
           translateY: ['0px', `${top > 0 ? `-${top}` : Math.abs(top)}px`],
-          translateX: ['0px', `-${left + 1}px`],
+          translateX: ['0px', `-${left}px`],
           width: [`${width}px`, `${screenWidth}px`],
           easing: 'easeOutExpo',
           duration: 500,
@@ -159,7 +159,7 @@ function showPoster(show = true, src = '') {
         anime({
           targets: moviePoster,
           translateY: [`-${top}px`, '0px'],
-          translateX: [`-${left + 1}px`, '0px'],
+          translateX: [`-${left}px`, '0px'],
           width: [`${screenWidth}px`, `${width}px`],
           easing: 'easeOutExpo',
           duration: 500,
@@ -236,10 +236,10 @@ function showMovie411(show = false, timeout = 0) {
 
   // before moving up movie-411 set the padding-top...
   let moviePosterHeight = window.getComputedStyle(moviePoster).height; // string
-  moviePosterHeight = Number(moviePosterHeight.substring(0, moviePosterHeight.length - 2));
+  moviePosterHeight = Number.parseInt(moviePosterHeight.substring(0, moviePosterHeight.length - 2), 10);
 
   let screenHeight = window.getComputedStyle(window.document.body).height;
-  screenHeight = Number(screenHeight.substring(0, screenHeight.length - 2));
+  screenHeight = Number.parseInt(screenHeight.substring(0, screenHeight.length - 2), 10);
   const screenHeight75 = Math.floor(screenHeight * 0.75);
 
   movie411.style.paddingTop = `${moviePosterHeight < screenHeight75 ? moviePosterHeight : screenHeight75}px`;

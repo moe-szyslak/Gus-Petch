@@ -96,7 +96,7 @@ function showtime() {
             if (show.c3.length === 0 && show.c2.length === 0 && show.c1.length === 0) {
               if (window.navigator.notification) {
                 window.navigator.notification.alert(
-                  'EdnaMall\'s Showtime is currently empty.',
+                  'Edna Mall\'s Showtime is currently empty.',
                   () => {},
                   'No Shows 🤔',
                   'OK'
@@ -120,7 +120,7 @@ function showtime() {
 
             if (window.navigator.notification) {
               window.navigator.notification.alert(
-                err.status === 418 ? 'EdnaMall\'s Showtime is currently empty. Try gain latter.' : 'Unable to reach Showtime server. Try again latter.',
+                err.status === 418 ? 'Edna Mall\'s Showtime is currently empty. Try gain latter.' : 'Unable to reach Showtime server. Try again latter.',
                 () => {},
                 err.status === 418 ? 'No Shows 🤔' : 'No Internet 😱',
                 'OK'
