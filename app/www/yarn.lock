@@ -41,7 +41,7 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-animejs:
+animejs@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/animejs/-/animejs-1.1.1.tgz#be910a58735b467a52ccd858ea60f02f877bd92e"
 
@@ -2071,9 +2071,9 @@ loader-utils@^0.2.11, loader-utils@^0.2.15, loader-utils@^0.2.5, loader-utils@^0
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-localforage@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.4.3.tgz#a212543c39c7c76424edd12bf474c489aaca494c"
+localforage@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.5.0.tgz#6b994e19b56611fa85df3992df397ac4ab66e815"
   dependencies:
     lie "3.0.2"
 
