@@ -266,6 +266,7 @@ function showMovie411(show = false, timeout = 0) {
       return new Promise((resolve) => {
         movie411.style.opacity = '0';
         setTimeout(() => {
+          movie411.scrollTop = 0;
           movie411.style.transform = 'translateY(100vh)';
           resolve();
         }, timeout);
