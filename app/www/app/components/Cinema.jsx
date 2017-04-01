@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import geezer from 'geezer';
 
 import store from 'app/redux/store';
 import { poster } from 'app/redux/action/showtime';
@@ -82,7 +83,7 @@ class Cinema extends Component {
                         // eslint-disable-next-line
                         src={Number(movie.detail.aggregateRating.ratingValue) > 70 ? CERTIFIED_FRESH : Number(movie.detail.aggregateRating.ratingValue) > 59 ? FRESH_TOMATO : ROTTEN}
                       />
-                      <span className="movie-score">{movie.detail.aggregateRating.ratingValue}</span>
+                      <span className="movie-score">{this.state.language === 'am' ? geezer(movie.detail.aggregateRating.ratingValue) : movie.detail.aggregateRating.ratingValue }</span>
                     </div>
                     : <span />
                 }
