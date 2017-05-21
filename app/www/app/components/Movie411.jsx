@@ -9,10 +9,6 @@ import containsFidel from 'app/util/containsFidel';
 import Artist from 'app/components/Artist.jsx';
 import Video from 'app/components/Video.jsx';
 
-const play = (e) => {
-  e.target.play();
-};
-
 /**
  * To have proper stacking context, some components will live _outside_, not inside <Movie />
  *
@@ -37,7 +33,7 @@ function Movie411({ language, movie, back }) {
             </div>
 
             <div className="trailer-container">
-              { movie.detail.trailers.map(trailer => <Video key={trailer.id} trailer={trailer} play={play} />) }
+              { movie.detail.trailers.map(trailer => <Video key={trailer.id} trailer={trailer} />) }
             </div>
 
             <div className={`cast-label ${amClass(language)}`}>

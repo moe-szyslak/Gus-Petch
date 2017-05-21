@@ -130,7 +130,6 @@ a, img {
   padding-top: .1em;
   font-size: 1.5em;
   color: @textActiveColor;
-  backdrop-filter: blur(@blurRadius);
   border: none;
   border-radius: 1em;
   outline: none;
@@ -178,14 +177,14 @@ a, img {
   transform: translateY(100vh);
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   z-index: 5;
   overflow-y: scroll;
   transition: opacity .35s ease-out;
   -webkit-overflow-scrolling: touch;
 
   .info-container {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     padding: .5em 1em;
     backdrop-filter: blur(@blurRadius);
 

@@ -20,8 +20,13 @@ const goBack = () => {
       window.StatusBar.show();
     }
   });
-  enableScroll(true);
+
   showMovie411(false, 250).then(() => {
+    // 500ms on `showPoster` resolve
+    setTimeout(() => {
+      enableScroll(true);
+    }, 450);
+
     showPoster(false).then(() => {
       setPosterSrc('');
       activeMovie(null);
