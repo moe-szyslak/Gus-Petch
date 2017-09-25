@@ -72,7 +72,7 @@ function Movie411({ language, movie, back }) {
 
                 <tr>
                   <td>Runtime</td>
-                  <td>{ movie.detail.runtime }</td>
+                  <td>{ movie.detail.runtime === null ? 'N/A' : movie.detail.runtime }</td>
                 </tr>
               </tbody>
             </table>
