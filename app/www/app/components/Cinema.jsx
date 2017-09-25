@@ -83,7 +83,7 @@ class Cinema extends Component {
                         // eslint-disable-next-line
                         src={Number(movie.detail.aggregateRating.ratingValue) > 70 ? CERTIFIED_FRESH : Number(movie.detail.aggregateRating.ratingValue) > 59 ? FRESH_TOMATO : ROTTEN}
                       />
-                      <span className="movie-score">{this.state.language === 'am' ? geezer(movie.detail.aggregateRating.ratingValue) : movie.detail.aggregateRating.ratingValue }</span>
+                      <span className={`movie-score ${this.state.language === 'am' ? '_am_' : ''}`}>{this.state.language === 'am' ? geezer(movie.detail.aggregateRating.ratingValue) : movie.detail.aggregateRating.ratingValue }</span>
                     </div>
                     : <span />
                 }
